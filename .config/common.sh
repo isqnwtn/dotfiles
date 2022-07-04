@@ -16,6 +16,8 @@ export PATH=/home/vismay/.cargo/bin:$PATH
 # alias ss="screen -R"
 # alias sls="screen -ls"
 alias vim="nvim"
+alias fanon="sudo isw -b on"
+alias fanoff="sudo isw -b off"
 
 # aliases for tmux
 # alias ttt="tmux new -s"

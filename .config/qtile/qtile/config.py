@@ -42,11 +42,8 @@ terminal = '/home/vismay/builds/alacritty/target/release/alacritty'
 def autostart():
     home = os.path.expanduser('~')
     subprocess.call([home+'/.config/qtile/autostart.sh'])
-    os.system("arbtt-capture")
 
-@hook.subscribe.setgroup
-def changeToWork():
-    os.system("notify-send -u low -t 500 $(pgrep arbtt-capture)")
+    
 
 
 keys = [
@@ -95,6 +92,8 @@ keys = [
         ,Key([], "d", lazy.spawn("rofi -show drun -show-icon"))
         ,Key([], "e", lazy.spawn("rofi -show emoji -modi emoji"))
         ,Key([], "f", lazy.spawn("cool-retro-term --profile st1 -T xplr -e xplr"))
+        ,Key([], "b", lazy.spawn("cool-retro-term --profile st1 -T btm -e btm"))
+        ,Key([], "a", lazy.spawn("cool-retro-term --profile st1 -T arbtt-tui-exe -e bash"))
         ,Key([], "c", lazy.spawn("rofi -show calc -modi calc"))
         ,Key([], "t", lazy.spawn(os.path.expanduser('~/.config/rofi/custom_menu.sh')))
     ]),
@@ -121,11 +120,11 @@ keys = [
     # Volume control
     Key(
         [], "XF86AudioRaiseVolume",
-        lazy.spawn("amixer -c 0 -q set Master 2dB+")
+        lazy.spawn("pamixer -i 3")
     ),
     Key(
         [], "XF86AudioLowerVolume",
-        lazy.spawn("amixer -c 0 -q set Master 2dB-")
+        lazy.spawn("pamixer -d 3")
     ),
     Key(
         [], "XF86AudioMute",
@@ -269,6 +268,7 @@ floating_layout = layout.Floating(
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(wm_class="cool-retro-term"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="xplr"),

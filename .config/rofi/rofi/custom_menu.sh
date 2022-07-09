@@ -6,6 +6,10 @@ do
     selected=$(rofi -dmenu -p ${prompt})
     words=($selected)
     case "${words[0]}" in
+        "arb")
+            alacritty -e "arbtt-tui-exe; exec $SHELL"
+            break
+            ;;
         "quit")
             break
             ;;
